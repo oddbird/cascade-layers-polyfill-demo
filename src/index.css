@@ -1,0 +1,9 @@
+@layer colors {
+  div {
+    background-color: red;
+  }
+
+  @layer othercolors {
+    color: green;
+  }
+}

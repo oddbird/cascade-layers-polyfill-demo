@@ -1,1 +1,0 @@
-(()=>{let e=document.createElement("style"),t=!1;e.innerHTML="@layer browser-syntax-test {\n  :root {\n    --test: testing;\n  }\n}";var n=document.querySelector("script");n.parentNode.insertBefore(e,n),window.getComputedStyle(document.documentElement).getPropertyValue("--test").trim()})();

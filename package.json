@@ -11,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "@csstools/postcss-cascade-layers": "^1.0.3",
+    "chalk": "^5.0.1",
     "css-loader": "^6.7.1",
     "mini-css-extract-plugin": "^2.6.1",
     "postcss-loader": "^7.0.0",

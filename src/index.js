@@ -1,11 +1,11 @@
 // set up webpack or similar?
-const styles = require('./index.css')
+// const styles = require('./index.css')
 
-postcss([
-	postcssCascadeLayers(/* pluginOptions */)
-]).process(styles /*, processOptions */);
+// postcss([
+// 	postcssCascadeLayers(/* pluginOptions */)
+// ]).process(styles /*, processOptions */);
 
-let layerTest = document.createElement("style");
+let layerTest = document.createElement('style');
 let passesTest = false;
 layerTest.innerHTML = `@layer browser-syntax-test {
   :root {
@@ -13,7 +13,7 @@ layerTest.innerHTML = `@layer browser-syntax-test {
   }
 }`;
 // Get the first script tag
-var ref = document.querySelector("script");
+var ref = document.querySelector('script');
 
 // Insert our new styles before the first script tag
 ref.parentNode.insertBefore(layerTest, ref);
@@ -21,14 +21,12 @@ ref.parentNode.insertBefore(layerTest, ref);
 if (
   window
     .getComputedStyle(document.documentElement)
-    .getPropertyValue("--test")
-    .trim() === "testing"
+    .getPropertyValue('--test')
+    .trim() === 'testing'
 ) {
   passesTest = true;
 }
 
 if (passesTest) {
-
 } else {
-
 }

@@ -5,13 +5,26 @@ const plugins = [new MiniCssExtractPlugin()];
 module.exports = {
   mode: 'development',
   entry: {
-    app: ['./src/index.js', './src/index.css'],
+    main: './src/index.js',
+    polyfilled: './src/index.css',
+    raw: './src/index.css?raw',
   },
   plugins,
   module: {
     rules: [
       {
         test: /\.css$/i,
+        resourceQuery: /raw/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+          },
+        ],
+      },
+      {
+        test: /\.css$/i,
+        resourceQuery: { not: [/raw/] },
         use: [
           MiniCssExtractPlugin.loader,
           {

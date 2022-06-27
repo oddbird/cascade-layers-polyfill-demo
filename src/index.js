@@ -1,10 +1,3 @@
-// set up webpack or similar?
-// const styles = require('./index.css')
-
-// postcss([
-// 	postcssCascadeLayers(/* pluginOptions */)
-// ]).process(styles /*, processOptions */);
-
 let layerTest = document.createElement('style');
 let passesTest = false;
 layerTest.innerHTML = `@layer browser-syntax-test {

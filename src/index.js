@@ -1,25 +1,31 @@
-let layerTest = document.createElement('style');
-let passesTest = false;
-layerTest.innerHTML = `@layer browser-syntax-test {
-  :root {
-    --test: testing;
-  }
-}`;
-// Get the first script tag
-var ref = document.querySelector('script');
+var inputs = document.querySelectorAll("input");
+inputs.forEach(function(i){
+    i.addEventListener('click', function(el){
+        if(document.querySelector('input[name="stylesheet"]:checked').value === document.getElementById('polyfilledVersion').value) {
 
-// Insert our new styles before the first script tag
-ref.parentNode.insertBefore(layerTest, ref);
+          let remove = document.getElementById('raw');
+          remove ? remove.parentNode.removeChild(remove) : '';
 
-if (
-  window
-    .getComputedStyle(document.documentElement)
-    .getPropertyValue('--test')
-    .trim() === 'testing'
-) {
-  passesTest = true;
-}
+          var link = document.createElement('link');
+          link.rel = "stylesheet";
+          link.type = "text/css";
+          link.href = '../dist/polyfilled.css'
+          link.id = 'polyfilled';
 
-if (passesTest) {
-} else {
-}
+          document.head.appendChild(link);
+        } else {
+          console.log(document.querySelector('input[name="stylesheet"]:checked').value, document.getElementById('polyfilled'))
+          let remove = document.getElementById('polyfilled');
+
+          remove.parentNode ? remove.parentNode.removeChild(remove) : '';
+          var link = document.createElement('link');
+          link.rel = "stylesheet";
+          link.type = "text/css";
+          link.href = '../dist/raw.css';
+          link.id = 'raw';
+
+;
+          document.head.appendChild(link);
+        }
+    });
+});

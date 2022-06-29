@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const atImport = require("postcss-import")
 
 const plugins = [new MiniCssExtractPlugin()];
 
@@ -39,6 +40,7 @@ module.exports = {
               postcssOptions: {
                 plugins: [
                   [
+                    "postcss-import",
                     '@csstools/postcss-cascade-layers',
                     {
                       // Options

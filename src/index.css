@@ -1,11 +1,65 @@
-@import url("https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css") layer(default);
+@layer defaults, framework, overrides;
 
-@layer default {
-  div {
-    color: purple;
+/* Maybe try importing only a small part of bootstrap? */
+/* @import url("bootstrap.css") layer(framework); */
+
+/* Import Bootstrap to the defaults layer */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css") layer(framework);
+
+/* Unlayered Styles */
+body:before {
+  background-color: Crimson;
+  color: white;
+  content: 'Your browser does not support layers, so try the polyfilled version';
+  display: block;
+  padding: 1rem;
+}
+
+.btn {
+  appearance: none;
+  border: 0;
+  font-size: 1rem;
+  padding: 0.5rem 3ch;
+}
+
+@layer defaults {
+  .btn {
+    background-color: MediumSlateBlue;
+    color: white;
   }
 }
 
-div {
-  color: green;
+@layer overrides {
+  body:before {
+    background-color: SeaGreen !important;
+    content: '`overrides` layer is priority. Your browser either supports layers or you are seeing a polyfilled version.' !important;
+  }
+
+  .btn {
+    background-color: SeaGreen;
+    color: white;
+  }
+}
+
+body {
+  color: hsl(300deg 10% 20%);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  line-height: 1.3;
+}
+
+blockquote {
+  font-style: oblique;
+}
+
+figcaption {
+  font-weight: bold;
+}
+
+figcaption a {
+  font-weight: normal;
+}
+
+main {
+  padding: 1rem;;
 }

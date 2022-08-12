@@ -10,15 +10,13 @@
 <body>
   <main>
     <h1>CSS Cascade Layers Polyfill Demo</h1>
-
     <h2>What are Cascade Layers?</h2>
-
-    <blockquote>...a CSS feature that allows us to define explicit contained layers of specificity, so that we have full control over which styles take priority in a project without relying on specificity hacks or !important.</blockquote>
-
-    <figcaption>Miriam Suzanne, <a href="https://css-tricks.com/css-cascade-layers/">A complete guide to CSS Cascade Layers</a></figcaption>
+    <figure>
+      <blockquote>...a CSS feature that allows us to define explicit contained layers of specificity, so that we have full control over which styles take priority in a project without relying on specificity hacks or !important.</blockquote>
+      <figcaption>Miriam Suzanne, <a href="https://css-tricks.com/css-cascade-layers/">A complete guide to CSS Cascade Layers</a></figcaption>
+    </figure>
 
     <h2>What does this polyfill do?</h2>
-
     <p>It uses PostCSS to pre-process the CSS, meaning you can write CSS with Cascade Layers and not worry about it only being available in some of the latest browsers. More details are available in Oddbird's <a href="https://www.oddbird.net/2022/06/21/cascade-layers-polyfill/">blog post by Sana Javed</a>.</p>
 
     <h2>Change the CSS stylesheet below!</h2>
@@ -37,14 +35,13 @@
     </fieldset>
 
     <aside class="test-content">
-      <h2>Sample Content for Testing</h2>
-      <h3>Buttons</h3>
+      <h2>Sample Content for Layers and the Polyfill</h2>
+      <p>The overrides layer will make sure the default Bootstrap button styles are all one single brand color.</p>
       <button type="button" class="btn btn-primary">Primary</button>
       <button type="button" class="btn btn-secondary">Secondary</button>
       <button type="button" class="btn btn-success">Success</button>
       <button type="button" class="btn btn-danger">Danger</button>
     </aside>
-
   </main>
 
   <script src="../dist/main.js"></script>

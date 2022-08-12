@@ -1,11 +1,10 @@
-@layer defaults, framework, overrides;
+@layer framework, overrides;
 
 /* Maybe try importing only a small part of bootstrap? */
-/* @import url("bootstrap.css") layer(framework); */
+@import url("bootstrap.css") layer(framework);
 
 /* Import Bootstrap to the defaults layer */
-@import url('https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css')
-layer(framework);
+/* @import url("https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css") layer(framework); */
 
 /* Unlayered Styles */
 body:before {

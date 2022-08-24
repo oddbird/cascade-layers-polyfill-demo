@@ -4,43 +4,51 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>CSS Layers Polyfill Demo</title>
+  <link rel="stylesheet" href="https://use.typekit.net/dyv8wex.css">
   <link id="raw" rel="stylesheet" type="text/css" href="../dist/raw.css">
 </head>
 <body>
+  <header>
+    <h1>CSS Cascade Layers <span>Polyfill Demo</span></h1>
+  </header>
+
   <main>
-    <h1>CSS Cascade Layers Polyfill Demo</h1>
-    <h2>What are Cascade Layers?</h2>
-    <figure>
-      <blockquote>...a CSS feature that allows us to define explicit contained layers of specificity, so that we have full control over which styles take priority in a project without relying on specificity hacks or !important.</blockquote>
-      <figcaption>Miriam Suzanne, <a href="https://css-tricks.com/css-cascade-layers/">A complete guide to CSS Cascade Layers</a></figcaption>
-    </figure>
+    <div class="primary">
+      <h2>What are Cascade Layers?</h2>
+      <figure>
+        <blockquote>...a CSS feature that allows us to define explicit contained layers of specificity, so that we have full control over which styles take priority in a project without relying on specificity hacks or !important.</blockquote>
+        <figcaption>Miriam Suzanne, <a href="https://css-tricks.com/css-cascade-layers/">A complete guide to CSS Cascade Layers</a></figcaption>
+      </figure>
 
-    <h2>What does this polyfill do?</h2>
-    <p>It uses PostCSS to pre-process the CSS, meaning you can write CSS with Cascade Layers and not worry about it only being available in some of the latest browsers. More details are available in Oddbird's <a href="https://www.oddbird.net/2022/06/21/cascade-layers-polyfill/">blog post by Sana Javed</a>.</p>
+      <h2>What does this polyfill do?</h2>
+      <p>It uses PostCSS to pre-process the CSS, meaning you can write CSS with Cascade Layers and not worry about it only being available in some of the latest browsers. More details are available in Oddbird's <a href="https://www.oddbird.net/2022/06/21/cascade-layers-polyfill/">blog post by Sana Javed</a>.</p>
 
-    <h2>Change the CSS stylesheet below!</h2>
-    <p>The polyfilled CSS was transformed by the PostCSS plugin, and the unpolyfilled is unchanged.</p>
 
-    <fieldset>
-      <legend>Select a stylesheet</legend>
-        <div>
-          <input type="radio" id="plain" name="stylesheet" value="plain" checked>
-          <label for="plain">Unpolyfilled</label>
-        </div>
-        <div>
-          <input type="radio" id="polyfilledVersion" name="stylesheet" value="polyfilled">
-          <label for="polyfilled">Polyfilled</label>
-        </div>
-    </fieldset>
-
-    <aside class="test-content">
       <h2>Sample Content for Layers and the Polyfill</h2>
-      <p>The overrides layer will make sure the default Bootstrap button styles are all one single brand color.</p>
+      <p>When layes are supported or if the polyfill is in use, you will see the default bootstrap button styles:</p>
+
       <button type="button" class="btn btn-primary">Primary</button>
       <button type="button" class="btn btn-secondary">Secondary</button>
       <button type="button" class="btn btn-success">Success</button>
       <button type="button" class="btn btn-danger">Danger</button>
+  
+    </div>
+    <div class="controls">
+      <h2>Change the CSS stylesheet below!</h2>
+      <p>The polyfilled CSS was transformed by the PostCSS plugin, and the unpolyfilled is unchanged.</p>
+
+      <fieldset>
+        <legend>Select a stylesheet</legend>
+          <div>
+            <input type="radio" id="plain" name="stylesheet" value="plain" checked>
+            <label for="plain">Unpolyfilled</label>
+          </div>
+          <div>
+            <input type="radio" id="polyfilledVersion" name="stylesheet" value="polyfilled">
+            <label for="polyfilled">Polyfilled</label>
+          </div>
+      </fieldset>
     </aside>
   </main>
 

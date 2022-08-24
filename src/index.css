@@ -1,52 +1,84 @@
 @layer framework, overrides;
 
-/* Maybe try importing only a small part of bootstrap? */
 @import url("bootstrap.css") layer(framework);
 
-/* Import Bootstrap to the defaults layer */
-/* @import url("https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css") layer(framework); */
-
-/* Unlayered Styles */
-body:before {
-  background-color: Crimson;
-  color: white;
-  content: 'Your browser does not support layers, so try the polyfilled version';
-  display: block;
-  padding: 1rem;
-}
-
-.btn {
-  appearance: none;
-  border: 0;
-  font-size: 1rem;
-  padding: 0.5rem 3ch;
-}
-
-@layer defaults {
-  .btn {
-    background-color: MediumSlateBlue;
-    color: white;
-  }
-}
+/* @import url('https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css') layer(framework); */
 
 @layer overrides {
-  body:before {
-    background-color: SeaGreen !important;
-    content: '`overrides` layer is priority. Your browser either supports layers or you are seeing a polyfilled version.' !important;
+  html {
+    --bg: hsl(300deg 10% 20%);
+    --banner-bg: var(--brand-primary);
+    --fg: white;
+    --type: 'ltc-kennerley', 'quiche-text', sans-serif;
+    --h1-family: 'ltc-kennerley', sans-serif;
+    --h1-family-accent: 'gastromond', sans-serif;
+    --h1-size: 2.5rem;
   }
 
-  .btn {
-    background-color: SeaGreen;
-    color: white;
+  body:before {
+    content: 'Your browser either supports layers or you are seeing a polyfilled version.' !important;
+  }
+
+  h1 {
+    display: grid;
+    font-weight: 700;
+  }
+
+  h1 span {
+    font-size: 5rem;
+    font-weight: normal;
   }
 }
 
+
+html {
+  --brand-primary: hsl(195deg 52% 31%);
+  --brand-secondary: hsl(24deg 100% 62%);
+  --brand-highlight: hsl(330deg 100% 45%);
+  --gutter: 1rem;
+  --spacer: 3rem;
+  --half-gutter: 0.5rem;
+}
+
+/* Unlayered Styles have priority and since there's no way to check for layer
+   support in a CSS support query, we will override the bg color and content within the layer with !important
+*/
 body {
-  color: hsl(300deg 10% 20%);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--type);
+  line-height: 1.5;
   margin: 0;
-  line-height: 1.3;
+  padding: var(--spacer);
+}
+
+body:before {
+  background-color: var(--banner-bg);
+  color: var(--fg);
+  content: 'This browser does not support layers. May we suggest trying the polyfilled version?';
+  display: block;
+  left: 0;
+  padding: var(--gutter);
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: center;
+}
+
+h1 {
+  font-family: var(--h1-family, var(--type-heading-family));
+  font-feature-settings: 'swsh';
+  font-size: var(--h1-size);
+  text-align: center;
+}
+
+h1 span {
+  font-family: var(--h1-family-accent, var(--h1-family, var(--type-heading-family)));
+}
+
+h1, h2 {
+  line-height: 1.2;
+  margin-block-end: 0;
 }
 
 blockquote {
@@ -57,10 +89,17 @@ figcaption {
   font-weight: bold;
 }
 
+fieldset {
+  margin-bottom: var(--gutter);
+}
+
 figcaption a {
   font-weight: normal;
 }
 
 main {
-  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr minmax(auto, 30%);
+  gap: var(--half-gutter) calc(var(--gutter) + 2vw);
+  justify-content: center;
 }

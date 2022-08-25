@@ -9,10 +9,11 @@
     --bg: hsl(300deg 10% 20%);
     --banner-bg: var(--brand-primary);
     --fg: white;
-    --type: 'ltc-kennerley', 'quiche-text', sans-serif;
+    --type: 'ltc-kennerley', sans-serif;
     --h1-family: 'ltc-kennerley', sans-serif;
     --h1-family-accent: 'gastromond', sans-serif;
     --h1-size: 2.5rem;
+    --link: var(--brand-secondary);
   }
 
   body:before {
@@ -27,6 +28,10 @@
   h1 span {
     font-size: 5rem;
     font-weight: normal;
+  }
+
+  a {
+    color: var(--link);
   }
 }
 
@@ -47,6 +52,7 @@ body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--type);
+  font-size: calc(1em + 0.25vw);
   line-height: 1.5;
   margin: 0;
   padding: var(--spacer);

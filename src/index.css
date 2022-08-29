@@ -12,6 +12,7 @@
     --h1-family: 'ltc-kennerley', sans-serif;
     --h1-family-accent: 'gastromond', sans-serif;
     --h1-size: 2.5rem;
+    --h1-size-accent: calc(4rem + 1vw);
     --link: var(--brand-secondary);
     --type: 'ltc-kennerley', sans-serif;
   }
@@ -21,7 +22,7 @@
     for unsupported browsers to show the default (unlayered) message
     since unlayered styles have priority
   */
-  body:before {
+  .status:before {
     content: 'Your browser either supports layers or you are seeing a polyfilled version.' !important;
   }
 
@@ -31,7 +32,7 @@
   }
 
   h1 span {
-    font-size: 5rem;
+    font-size: var(--h1-size-accent);
     font-weight: normal;
   }
 
@@ -47,42 +48,52 @@ html {
   --brand-secondary: hsl(24deg 100% 62%);
   --brand-highlight: hsl(330deg 100% 45%);
   --gutter: 1rem;
-  --spacer: 3rem;
-  --half-gutter: 0.5rem;
+  --inline-padding: calc(1rem + 2vw);
 }
 
 body {
   background: var(--bg);
   color: var(--fg);
+  display: grid;
+  grid-template:
+    'messages' auto
+    'header' auto
+    'main' 1fr / 100%;
   font-family: var(--type);
   font-size: calc(1em + 0.25vw);
   line-height: 1.5;
   margin: 0;
-  padding: var(--spacer);
 }
 
-body:before {
+body > * {
+  padding: var(--block-padding, var(--gutter)) var(--inline-padding, var(--gutter));
+}
+
+.status {
   background-color: var(--banner-bg);
   color: var(--fg);
-  content: 'This browser does not support layers. May we suggest trying the polyfilled version?';
-  display: block;
-  left: 0;
-  padding: var(--gutter);
-  position: absolute;
-  right: 0;
-  top: 0;
+  grid-area: messages;
   text-align: center;
 }
 
+.status:before {
+  content: 'This browser does not support layers. May we suggest trying the polyfilled version?';
+  display: block;
+}
+
+header {
+  grid-area: header;
+}
+
 h1 {
-  font-family: var(--h1-family, var(--type-heading-family));
+  font-family: var(--h1-family);
   font-feature-settings: 'swsh';
   font-size: var(--h1-size);
   text-align: center;
 }
 
 h1 span {
-  font-family: var(--h1-family-accent, var(--h1-family, var(--type-heading-family)));
+  font-family: var(--h1-family-accent, var(--h1-family));
 }
 
 h1,
@@ -98,9 +109,10 @@ h2,
 }
 
 blockquote {
-  font-style: oblique;
+  font-style: italic;
 }
 
+legend,
 figcaption {
   font-weight: bold;
 }
@@ -115,7 +127,13 @@ fieldset {
 
 main {
   display: grid;
-  grid-template-columns: 1fr minmax(auto, 30%);
-  gap: var(--half-gutter) calc(var(--gutter) + 2vw);
+  gap: calc(var(--gutter) + 2vw);
+  grid-area: main;
   justify-content: center;
+}
+
+@media (min-width: 40rem) {
+  main {
+    grid-template-columns: 1fr minmax(auto, 30%);
+  }
 }

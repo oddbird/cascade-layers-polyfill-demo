@@ -6,16 +6,21 @@
 
 @layer overrides {
   html {
-    --bg: hsl(300deg 10% 20%);
     --banner-bg: var(--brand-primary);
+    --bg: hsl(300deg 10% 20%);
     --fg: white;
-    --type: 'ltc-kennerley', sans-serif;
     --h1-family: 'ltc-kennerley', sans-serif;
     --h1-family-accent: 'gastromond', sans-serif;
     --h1-size: 2.5rem;
     --link: var(--brand-secondary);
+    --type: 'ltc-kennerley', sans-serif;
   }
 
+  /*
+    using !important within the overrides layer
+    for unsupported browsers to show the default (unlayered) message
+    since unlayered styles have priority
+  */
   body:before {
     content: 'Your browser either supports layers or you are seeing a polyfilled version.' !important;
   }
@@ -35,6 +40,7 @@
   }
 }
 
+/* Unlayered Styles have priority */
 
 html {
   --brand-primary: hsl(195deg 52% 31%);
@@ -45,9 +51,6 @@ html {
   --half-gutter: 0.5rem;
 }
 
-/* Unlayered Styles have priority and since there's no way to check for layer
-   support in a CSS support query, we will override the bg color and content within the layer with !important
-*/
 body {
   background: var(--bg);
   color: var(--fg);
@@ -82,9 +85,16 @@ h1 span {
   font-family: var(--h1-family-accent, var(--h1-family, var(--type-heading-family)));
 }
 
-h1, h2 {
+h1,
+h2,
+legend {
   line-height: 1.2;
   margin-block-end: 0;
+}
+
+h2,
+.h2 {
+  margin-top: var(--gutter);
 }
 
 blockquote {
@@ -95,12 +105,12 @@ figcaption {
   font-weight: bold;
 }
 
-fieldset {
-  margin-bottom: var(--gutter);
-}
-
 figcaption a {
   font-weight: normal;
+}
+
+fieldset {
+  margin-bottom: var(--gutter);
 }
 
 main {

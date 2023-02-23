@@ -3,6 +3,12 @@
 This is a demo showing how the Cascade Layers Polyfill is used.
 
 
+## Local Testing
+
+To run this project locally, run `npx webpack` to build the project.
+Open `src/index.html` in your web browser.
+
+
 ## Additional Resources
 
 - The Cascade Layers Polyfill is [available as an

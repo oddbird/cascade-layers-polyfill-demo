@@ -18,15 +18,34 @@
     <div class="primary">
       <h2>What are Cascade Layers?</h2>
       <figure>
-        <blockquote>...a CSS feature that allows us to define explicit contained layers of specificity, so that we have full control over which styles take priority in a project without relying on specificity hacks or !important.</blockquote>
-        <figcaption>Miriam Suzanne, <a href="https://css-tricks.com/css-cascade-layers/">A complete guide to CSS Cascade Layers</a></figcaption>
+        <blockquote>
+          ...a CSS feature that allows us to define explicit contained layers of
+          specificity, so that we have full control over which styles take
+          priority in a project without relying on specificity hacks or
+          !important.
+        </blockquote>
+        <figcaption>
+          Miriam Suzanne,
+          <a href="https://css-tricks.com/css-cascade-layers/">A complete guide
+            to CSS Cascade Layers</a>
+        </figcaption>
       </figure>
 
-      <h2>What does this polyfill do?</h2>
-      <p>It uses PostCSS to pre-process the CSS, meaning you can write CSS with Cascade Layers and not worry about it only being available in some of the latest browsers. More details are available in Oddbird's <a href="https://www.oddbird.net/2022/06/21/cascade-layers-polyfill/">blog post by Sana Javed</a>.</p>
+      <h2>What does the Cascade Layers polyfill do?</h2>
+      <p>It uses PostCSS to pre-process the CSS, meaning you can write CSS with
+        Cascade Layers and not worry about it only being available in some of
+        the latest browsers.The polyfill is
+        <a
+          href="https://www.npmjs.com/package/@csstools/postcss-cascade-layers">available
+          as an NPM package</a> and you can learn more about it by reading
+        <a href="https://www.oddbird.net/2022/06/21/cascade-layers-polyfill/">Cascade
+          Layers – There’s a Polyfill for That!</a> by Sana Javed on the Oddbird
+          blog</a>.
+      </p>
 
       <h2>Sample Content for Layers and the Polyfill</h2>
-      <p>When layes are supported or if the polyfill is in use, you will see the default bootstrap button styles:</p>
+      <p>When layes are supported or if the polyfill is in use, you will see the
+        default bootstrap button styles:</p>
 
       <button type="button" class="btn btn-primary">Primary</button>
       <button type="button" class="btn btn-secondary">Secondary</button>
@@ -36,16 +55,18 @@
     </div>
     <fieldset class="controls">
       <legend class="h2">Select a stylesheet below!</legend>
-      <p>The polyfilled CSS was transformed by the PostCSS plugin, and the unpolyfilled is unchanged.</p>
+      <p>The polyfilled CSS was transformed by the PostCSS plugin,
+         and the unpolyfilled is unchanged.</p>
 
-        <div>
-          <input type="radio" id="plain" name="stylesheet" value="plain" checked>
-          <label for="plain">Unpolyfilled</label>
-        </div>
-        <div>
-          <input type="radio" id="polyfilled" name="stylesheet" value="polyfilled">
-          <label for="polyfilled">Polyfilled</label>
-        </div>
+      <div>
+        <input type="radio" id="plain" name="stylesheet" value="plain" checked>
+        <label for="plain">Unpolyfilled</label>
+      </div>
+      <div>
+        <input type="radio" id="polyfilled" name="stylesheet"
+          value="polyfilled">
+        <label for="polyfilled">Polyfilled</label>
+      </div>
     </fieldset>
   </main>
 

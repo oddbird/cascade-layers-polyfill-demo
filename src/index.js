@@ -4,7 +4,7 @@ inputs.forEach(function (i) {
   i.addEventListener('click', function (el) {
     if (
       document.querySelector('input[name="stylesheet"]:checked').value ===
-      document.getElementById('polyfilledVersion').value
+      document.getElementById('polyfilled').value
     ) {
       let remove = document.getElementById('raw');
       remove ? remove.parentNode.removeChild(remove) : '';
@@ -22,8 +22,8 @@ inputs.forEach(function (i) {
         document.getElementById('polyfilled'),
       );
       let remove = document.getElementById('polyfilled');
-
       remove.parentNode ? remove.parentNode.removeChild(remove) : '';
+     
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.type = 'text/css';

@@ -13,7 +13,7 @@ inputs.forEach(function (i) {
       link.rel = 'stylesheet';
       link.type = 'text/css';
       link.href = '../dist/polyfilled.css';
-      link.id = 'polyfilled';
+      link.id = 'polyfilled-css';
 
       document.head.appendChild(link);
     } else {
@@ -21,7 +21,7 @@ inputs.forEach(function (i) {
         document.querySelector('input[name="stylesheet"]:checked').value,
         document.getElementById('polyfilled'),
       );
-      let remove = document.getElementById('polyfilled');
+      let remove = document.getElementById('polyfilled-css');
       remove.parentNode ? remove.parentNode.removeChild(remove) : '';
      
       const link = document.createElement('link');

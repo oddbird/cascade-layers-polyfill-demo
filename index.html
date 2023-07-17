@@ -7,6 +7,10 @@
     <title>CSS Layers Polyfill Demo</title>
     <link rel="stylesheet" href="https://use.typekit.net/dyv8wex.css" />
     <link
+      rel="stylesheet"
+      href="https://unpkg.com/prismjs@v1.x/themes/prism.css"
+    />
+    <link
       id="plain-css"
       rel="stylesheet"
       type="text/css"
@@ -41,7 +45,8 @@
         <p>
           It uses <a href="https://postcss.org/">PostCSS</a> to pre-process the
           CSS, meaning you can write CSS with Cascade Layers and not worry about
-          it only being available in some of the latest browsers.The polyfill is
+          it only being available in some of the latest browsers. The polyfill
+          is
           <a
             href="https://www.npmjs.com/package/@csstools/postcss-cascade-layers"
             >available as an NPM package</a
@@ -52,6 +57,52 @@
           >
           by Sana Javed on the OddBird blog.
         </p>
+
+        <h2>How to use the Cascade Layers Polyfill</h2>
+        <p>
+          Assuming you have two CSS files, one main stylesheet using Layers and
+          another preprocessed with the
+          <a
+            href="https://www.npmjs.com/package/@csstools/postcss-cascade-layers"
+            >polyfill</a
+          >, you can test for <code>@layer</code> support and conditionally use
+          the appropriate stylesheet:
+        </p>
+        <pre><code class="language-js"
+>/* inspired by: https://codepen.io/miriamsuzanne/pen/poLOYrz */
+
+const varName = '--js-test-layer-support';
+
+// inject a style element with a layered variable
+const style = document.createElement('style');
+style.textContent = `@layer {:root{${varName}: true;}}`;
+document.head.appendChild(style);
+
+// check if the variable is set
+const hasSupport = getComputedStyle(document.documentElement)
+  .getPropertyValue(varName)
+  .includes('true');
+
+// remove the style element
+document.head.removeChild(style);
+
+// (optionally) add a root class
+const supportClass = hasSupport ? 'layers' : 'no-layers';
+document.documentElement.classList.add(supportClass);
+
+if (hasSupport) {
+  // load the plain (unpolyfilled) stylesheet
+  const styles = document.createElement('link');
+  styles.rel = 'stylesheet';
+  styles.href = './dist/styles.css';
+  document.head.appendChild(styles);
+} else {
+  // load the polyfilled stylesheet
+  const polyfilled = document.createElement('link');
+  polyfilled.rel = 'stylesheet';
+  polyfilled.href = './dist/polyfilled.css';
+  document.head.appendChild(polyfilled);
+}</code></pre>
 
         <h2>Sample Content for Layers and the Polyfill</h2>
         <p>
@@ -94,5 +145,7 @@
     </main>
 
     <script src="./dist/main.js"></script>
+    <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+    <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
   </body>
 </html>

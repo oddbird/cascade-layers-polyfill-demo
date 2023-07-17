@@ -15,15 +15,6 @@
     --type: 'ltc-kennerley', sans-serif;
   }
 
-  /*
-    using !important within the overrides layer
-    for unsupported browsers to show the default (unlayered) message
-    since unlayered styles have priority
-  */
-  .status:before {
-    content: 'Your browser either supports layers or you are seeing a polyfilled version.' !important;
-  }
-
   h1 {
     display: grid;
     font-weight: 700;
@@ -73,11 +64,19 @@ body > * {
   color: var(--fg);
   grid-area: messages;
   text-align: center;
+  display: block;
 }
 
-.status:before {
+.layers-false .status:before {
   content: 'This browser does not support layers. May we suggest trying the polyfilled version?';
-  display: block;
+}
+
+.layers-false.polyfilled .status:before {
+  content: 'This browser does not support layers, but the polyfill is applied.';
+}
+
+.layers-true .status:before {
+  content: 'This browser supports layers natively.';
 }
 
 header {

@@ -1,36 +1,32 @@
-const inputs = document.querySelectorAll('input');
+const inputs = document.querySelectorAll(
+  'input[type="radio"][name="stylesheet"]',
+);
+
+const removeCSS = (type) => {
+  const oldCSS = document.getElementById(`${type}-css`);
+  oldCSS?.parentNode?.removeChild(oldCSS);
+};
+
+const addCSS = (type) => {
+  const newCSS = document.createElement('link');
+  newCSS.rel = 'stylesheet';
+  newCSS.type = 'text/css';
+  newCSS.href = `../dist/${type}.css`;
+  newCSS.id = `${type}-css`;
+  document.head.appendChild(newCSS);
+};
 
 inputs.forEach(function (i) {
-  i.addEventListener('click', function (el) {
-    if (
-      document.querySelector('input[name="stylesheet"]:checked').value ===
-      document.getElementById('polyfilled').value
-    ) {
-      let remove = document.getElementById('raw');
-      remove ? remove.parentNode.removeChild(remove) : '';
-
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = '../dist/polyfilled.css';
-      link.id = 'polyfilled-css';
-
-      document.head.appendChild(link);
-    } else {
-      console.log(
-        document.querySelector('input[name="stylesheet"]:checked').value,
-        document.getElementById('polyfilled'),
-      );
-      let remove = document.getElementById('polyfilled-css');
-      remove.parentNode ? remove.parentNode.removeChild(remove) : '';
-     
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = '../dist/raw.css';
-      link.id = 'raw';
-
-      document.head.appendChild(link);
+  i.addEventListener('change', function (el) {
+    switch (el.target.value) {
+      case 'plain':
+        removeCSS('polyfilled');
+        addCSS('plain');
+        break;
+      case 'polyfilled':
+        removeCSS('plain');
+        addCSS('polyfilled');
+        break;
     }
   });
 });

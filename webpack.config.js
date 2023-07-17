@@ -7,7 +7,7 @@ module.exports = {
   entry: {
     main: './src/index.js',
     polyfilled: './src/index.css',
-    raw: './src/index.css?raw',
+    plain: './src/index.css?raw',
   },
   plugins,
   module: {

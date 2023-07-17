@@ -10,7 +10,7 @@
       id="plain-css"
       rel="stylesheet"
       type="text/css"
-      href="../dist/plain.css"
+      href="./dist/plain.css"
     />
   </head>
   <body>
@@ -27,7 +27,7 @@
             ...a CSS feature that allows us to define explicit contained layers
             of specificity, so that we have full control over which styles take
             priority in a project without relying on specificity hacks or
-            !important.
+            <code>!important</code>.
           </blockquote>
           <figcaption>
             Miriam Suzanne,
@@ -37,11 +37,11 @@
           </figcaption>
         </figure>
 
-        <h2>What does the Cascade Layers polyfill do?</h2>
+        <h2>What does the Cascade Layers Polyfill do?</h2>
         <p>
-          It uses PostCSS to pre-process the CSS, meaning you can write CSS with
-          Cascade Layers and not worry about it only being available in some of
-          the latest browsers.The polyfill is
+          It uses <a href="https://postcss.org/">PostCSS</a> to pre-process the
+          CSS, meaning you can write CSS with Cascade Layers and not worry about
+          it only being available in some of the latest browsers.The polyfill is
           <a
             href="https://www.npmjs.com/package/@csstools/postcss-cascade-layers"
             >available as an NPM package</a
@@ -68,7 +68,7 @@
         <legend class="h2">Select a stylesheet below!</legend>
         <p>
           The polyfilled CSS was transformed by the PostCSS plugin, and the
-          unpolyfilled is unchanged.
+          unpolyfilled CSS is unchanged.
         </p>
 
         <div>
@@ -93,6 +93,6 @@
       </fieldset>
     </main>
 
-    <script src="../dist/main.js"></script>
+    <script src="./dist/main.js"></script>
   </body>
 </html>

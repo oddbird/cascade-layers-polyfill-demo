@@ -1,6 +1,6 @@
 @layer framework, overrides;
 
-@import url("bootstrap.css") layer(framework);
+@import url('bootstrap.css') layer(framework);
 
 @layer overrides {
   html {
@@ -64,7 +64,8 @@ body {
 }
 
 body > * {
-  padding: var(--block-padding, var(--gutter)) var(--inline-padding, var(--gutter));
+  padding: var(--block-padding, var(--gutter))
+    var(--inline-padding, var(--gutter));
 }
 
 .status {

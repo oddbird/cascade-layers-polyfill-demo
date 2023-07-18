@@ -52,7 +52,7 @@ module.exports = {
             presets: [
               [
                 '@babel/preset-env',
-                { targets: 'defaults, ie 11', useBuiltIns: 'usage', corejs: 3 },
+                { targets: 'defaults', useBuiltIns: 'usage', corejs: 3 },
               ],
             ],
           },

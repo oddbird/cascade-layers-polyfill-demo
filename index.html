@@ -7,10 +7,6 @@
     <title>CSS Layers Polyfill Demo</title>
     <link rel="stylesheet" href="https://use.typekit.net/dyv8wex.css" />
     <link
-      rel="stylesheet"
-      href="https://unpkg.com/prismjs@v1.x/themes/prism.css"
-    />
-    <link
       id="plain-css"
       rel="stylesheet"
       type="text/css"
@@ -145,7 +141,19 @@ if (hasSupport) {
     </main>
 
     <script src="./dist/main.js"></script>
-    <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
-    <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+      // Only include syntax highlighting for non-IE browsers
+      if (!window.document.documentMode) {
+        const css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.type = 'text/css';
+        css.href = './src/vendor/prism.css';
+        document.head.appendChild(css);
+
+        const prism = document.createElement('script');
+        prism.src = './src/vendor/prism.js';
+        document.body.appendChild(prism);
+      }
+    </script>
   </body>
 </html>

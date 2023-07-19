@@ -132,16 +132,6 @@ blockquote {
   margin: 0 0 1rem;
 }
 
-b,
-strong {
-  font-weight: bolder;
-}
-
-small,
-.small {
-  font-size: 0.875em;
-}
-
 a {
   color: var(--bs-link-color);
   text-decoration: none;
@@ -159,6 +149,7 @@ label {
 
 button {
   border-radius: 0;
+  text-transform: none;
 }
 
 button:focus:not(:focus-visible) {
@@ -176,20 +167,8 @@ textarea {
   line-height: inherit;
 }
 
-button,
-select {
-  text-transform: none;
-}
-
 [role='button'] {
   cursor: pointer;
-}
-
-select {
-  word-wrap: normal;
-}
-select:disabled {
-  opacity: 1;
 }
 
 [list]:not([type='date']):not([type='datetime-local']):not([type='month']):not(

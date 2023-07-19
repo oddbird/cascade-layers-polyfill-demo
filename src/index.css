@@ -37,6 +37,8 @@ html {
   --brand-secondary: hsl(24deg 100% 62%);
   --brand-highlight: hsl(330deg 100% 45%);
   --gutter: 1rem;
+  --double-gutter: calc(var(--gutter) * 2);
+  --spacer: calc(var(--gutter) * 4);
   --inline-padding: calc(1rem + 2vw);
 }
 
@@ -103,7 +105,7 @@ legend {
 
 h2,
 .h2 {
-  margin-top: var(--gutter);
+  margin-top: var(--double-gutter);
 }
 
 blockquote {
@@ -120,7 +122,7 @@ figcaption a {
 }
 
 fieldset {
-  margin-bottom: var(--gutter);
+  margin-bottom: var(--spacer);
 }
 
 main {
@@ -128,9 +130,10 @@ main {
   gap: calc(var(--gutter) + 2vw);
   grid-area: main;
   justify-content: center;
+  padding-bottom: var(--spacer);
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 64rem) {
   main {
     grid-template-columns: 1fr minmax(auto, 30%);
   }

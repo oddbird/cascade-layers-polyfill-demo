@@ -99,45 +99,49 @@ if (hasSupport) {
   polyfilled.href = './dist/polyfilled.css';
   document.head.appendChild(polyfilled);
 }</code></pre>
+      </div>
+      <div class="secondary">
+        <fieldset class="controls">
+          <legend class="h2">Select a stylesheet below!</legend>
+          <p>
+            The polyfilled CSS was transformed by the PostCSS plugin, and the
+            unpolyfilled CSS is unchanged.
+          </p>
 
+          <div>
+            <input
+              type="radio"
+              id="plain"
+              name="stylesheet"
+              value="plain"
+              checked
+            />
+            <label for="plain">Unpolyfilled</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="polyfilled"
+              name="stylesheet"
+              value="polyfilled"
+            />
+            <label for="polyfilled">Polyfilled</label>
+          </div>
+        </fieldset>
         <h2>Sample Content for Layers and the Polyfill</h2>
         <p>
           When layers are supported or if the polyfill is in use, you will see
-          the default bootstrap button styles:
+          the default bootstrap button styles. In this demo, the Bootstrap CSS
+          is imported into the lowest priority layer making any CSS written
+          outside of the "framework" layer take priority. This means you can
+          apply your own styles without having to worry about increased
+          specificity.
         </p>
-
         <button type="button" class="btn btn-primary">Primary</button>
         <button type="button" class="btn btn-secondary">Secondary</button>
         <button type="button" class="btn btn-success">Success</button>
         <button type="button" class="btn btn-danger">Danger</button>
       </div>
-      <fieldset class="controls">
-        <legend class="h2">Select a stylesheet below!</legend>
-        <p>
-          The polyfilled CSS was transformed by the PostCSS plugin, and the
-          unpolyfilled CSS is unchanged.
-        </p>
-
-        <div>
-          <input
-            type="radio"
-            id="plain"
-            name="stylesheet"
-            value="plain"
-            checked
-          />
-          <label for="plain">Unpolyfilled</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="polyfilled"
-            name="stylesheet"
-            value="polyfilled"
-          />
-          <label for="polyfilled">Polyfilled</label>
-        </div>
-      </fieldset>
     </main>
 
     <script src="./dist/main.js"></script>

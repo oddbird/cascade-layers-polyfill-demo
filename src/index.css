@@ -1,6 +1,6 @@
 @layer framework, overrides;
 
-@import url('vendor/bootstrap.css') layer(framework);
+@import url('bootstrap.css') layer(framework);
 
 @layer overrides {
   html {

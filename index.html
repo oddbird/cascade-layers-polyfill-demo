@@ -12,6 +12,10 @@
       type="text/css"
       href="./dist/plain.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/prismjs@v1.x/themes/prism.css"
+    />
   </head>
   <body>
     <div class="status"></div>
@@ -145,19 +149,7 @@ if (hasSupport) {
     </main>
 
     <script src="./dist/main.js"></script>
-    <script>
-      // Only include syntax highlighting for non-IE browsers
-      if (!window.document.documentMode) {
-        const css = document.createElement('link');
-        css.rel = 'stylesheet';
-        css.type = 'text/css';
-        css.href = './src/vendor/prism.css';
-        document.head.appendChild(css);
-
-        const prism = document.createElement('script');
-        prism.src = './src/vendor/prism.js';
-        document.body.appendChild(prism);
-      }
-    </script>
+    <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+    <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
   </body>
 </html>

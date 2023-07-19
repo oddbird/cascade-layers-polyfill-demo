@@ -4,7 +4,11 @@ const inputs = document.querySelectorAll(
 
 const removeCSS = (type) => {
   const oldCSS = document.getElementById(`${type}-css`);
-  oldCSS?.parentNode?.removeChild(oldCSS);
+  if (!oldCSS?.parentNode) {
+    return false;
+  }
+  oldCSS.parentNode.removeChild(oldCSS);
+  return true;
 };
 
 const addCSS = (type) => {
@@ -20,14 +24,16 @@ inputs.forEach(function (i) {
   i.addEventListener('change', function (el) {
     switch (el.target.value) {
       case 'plain':
-        removeCSS('polyfilled');
-        addCSS('plain');
-        document.documentElement.classList.remove('polyfilled');
+        if (removeCSS('polyfilled')) {
+          addCSS('plain');
+          document.documentElement.classList.remove('polyfilled');
+        }
         break;
       case 'polyfilled':
-        removeCSS('plain');
-        addCSS('polyfilled');
-        document.documentElement.classList.add('polyfilled');
+        if (removeCSS('plain')) {
+          addCSS('polyfilled');
+          document.documentElement.classList.add('polyfilled');
+        }
         break;
     }
   });

@@ -5,16 +5,21 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@csstools/postcss-cascade-layers": "^1.0.3",
-    "css-loader": "^6.7.1",
-    "mini-css-extract-plugin": "^2.6.1",
-    "postcss-import": "^14.1.0",
-    "postcss-loader": "^7.2.4",
-    "webpack-cli": "^4.10.0"
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "@csstools/postcss-cascade-layers": "^4.0.0",
+    "babel-loader": "^9.1.3",
+    "core-js": "^3.31.1",
+    "css-loader": "^6.8.1",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss-import": "^15.1.0",
+    "postcss-loader": "^7.3.3",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4"
   }
 }

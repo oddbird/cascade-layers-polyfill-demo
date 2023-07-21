@@ -1,36 +1,71 @@
-const inputs = document.querySelectorAll('input');
+const inputs = document.querySelectorAll(
+  'input[type="radio"][name="stylesheet"]',
+);
+
+const removeCSS = (type) => {
+  const oldCSS = document.getElementById(`${type}-css`);
+  if (!oldCSS?.parentNode) {
+    return false;
+  }
+  oldCSS.parentNode.removeChild(oldCSS);
+  return true;
+};
+
+const addCSS = (type) => {
+  const newCSS = document.createElement('link');
+  newCSS.rel = 'stylesheet';
+  newCSS.type = 'text/css';
+  newCSS.href = `./dist/${type}.css`;
+  newCSS.id = `${type}-css`;
+  document.head.appendChild(newCSS);
+};
 
 inputs.forEach(function (i) {
-  i.addEventListener('click', function (el) {
-    if (
-      document.querySelector('input[name="stylesheet"]:checked').value ===
-      document.getElementById('polyfilledVersion').value
-    ) {
-      let remove = document.getElementById('raw');
-      remove ? remove.parentNode.removeChild(remove) : '';
-
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = '../dist/polyfilled.css';
-      link.id = 'polyfilled';
-
-      document.head.appendChild(link);
-    } else {
-      console.log(
-        document.querySelector('input[name="stylesheet"]:checked').value,
-        document.getElementById('polyfilled'),
-      );
-      let remove = document.getElementById('polyfilled');
-
-      remove.parentNode ? remove.parentNode.removeChild(remove) : '';
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = '../dist/raw.css';
-      link.id = 'raw';
-
-      document.head.appendChild(link);
+  i.addEventListener('change', function (el) {
+    switch (el.target.value) {
+      case 'plain':
+        if (removeCSS('polyfilled')) {
+          addCSS('plain');
+          document.documentElement.classList.remove('polyfilled');
+        }
+        break;
+      case 'polyfilled':
+        if (removeCSS('plain')) {
+          addCSS('polyfilled');
+          document.documentElement.classList.add('polyfilled');
+        }
+        break;
     }
   });
 });
+
+// the support function
+// - returns true or false depending on support
+// - sets a class on the root element
+// @see https://codepen.io/miriamsuzanne/pen/poLOYrz
+const checkLayerSupport = () => {
+  const varName = '--js-test-layer-support';
+
+  // inject a style element with a layered variable
+  const style = document.createElement('style');
+  style.textContent = `@layer {:root{${varName}: true;}}`;
+  document.head.appendChild(style);
+
+  // check if the variable is set
+  const hasSupport = getComputedStyle(document.documentElement)
+    .getPropertyValue(varName)
+    .includes('true');
+
+  // remove the style element
+  document.head.removeChild(style);
+
+  // add a root class
+  const supportClass = hasSupport ? 'layers-true' : 'layers-false';
+  document.documentElement.classList.add(supportClass);
+
+  // return true if supported
+  return hasSupport;
+};
+
+// check for @layer support
+checkLayerSupport();

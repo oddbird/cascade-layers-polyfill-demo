@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Layers Polyfill Demo</title>
+    <link rel="stylesheet" href="https://use.typekit.net/dyv8wex.css" />
+    <link
+      id="plain-css"
+      rel="stylesheet"
+      type="text/css"
+      href="./dist/plain.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/prismjs@v1.x/themes/prism.css"
+    />
+  </head>
+  <body>
+    <div class="status"></div>
+    <header>
+      <h1>CSS Cascade Layers <span>Polyfill Demo</span></h1>
+    </header>
+
+    <main>
+      <div class="primary">
+        <h2>What are Cascade Layers?</h2>
+        <figure>
+          <blockquote>
+            ...a CSS feature that allows us to define explicit contained layers
+            of specificity, so that we have full control over which styles take
+            priority in a project without relying on specificity hacks or
+            <code>!important</code>.
+          </blockquote>
+          <figcaption>
+            Miriam Suzanne,
+            <a href="https://css-tricks.com/css-cascade-layers/"
+              >A Complete Guide to CSS Cascade Layers</a
+            >
+          </figcaption>
+        </figure>
+
+        <h2>What does the Cascade Layers Polyfill do?</h2>
+        <p>
+          It uses <a href="https://postcss.org/">PostCSS</a> to pre-process the
+          CSS, meaning you can write CSS with Cascade Layers and not worry about
+          it only being available in some of the latest browsers. The polyfill
+          is
+          <a
+            href="https://www.npmjs.com/package/@csstools/postcss-cascade-layers"
+            >available as an NPM package</a
+          >
+          and you can learn more about it by reading
+          <a href="https://www.oddbird.net/2022/06/21/cascade-layers-polyfill/"
+            >Cascade Layers – There’s a Polyfill for That!</a
+          >
+          by Sana Javed on the OddBird blog.
+        </p>
+
+        <h2>How to use the Cascade Layers Polyfill</h2>
+        <p>
+          Assuming you have two CSS files, one main stylesheet using Layers and
+          another preprocessed with the
+          <a
+            href="https://www.npmjs.com/package/@csstools/postcss-cascade-layers"
+            >polyfill</a
+          >, you can test for <code>@layer</code> support and conditionally use
+          the appropriate stylesheet:
+        </p>
+        <pre><code class="language-js"
+>/* inspired by: https://codepen.io/miriamsuzanne/pen/poLOYrz */
+
+const varName = '--js-test-layer-support';
+
+// inject a style element with a layered variable
+const style = document.createElement('style');
+style.textContent = `@layer {:root{${varName}: true;}}`;
+document.head.appendChild(style);
+
+// check if the variable is set
+const hasSupport = getComputedStyle(document.documentElement)
+  .getPropertyValue(varName)
+  .includes('true');
+
+// remove the style element
+document.head.removeChild(style);
+
+// (optionally) add a root class
+const supportClass = hasSupport ? 'layers' : 'no-layers';
+document.documentElement.classList.add(supportClass);
+
+if (hasSupport) {
+  // load the plain (unpolyfilled) stylesheet
+  const styles = document.createElement('link');
+  styles.rel = 'stylesheet';
+  styles.href = './dist/styles.css';
+  document.head.appendChild(styles);
+} else {
+  // load the polyfilled stylesheet
+  const polyfilled = document.createElement('link');
+  polyfilled.rel = 'stylesheet';
+  polyfilled.href = './dist/polyfilled.css';
+  document.head.appendChild(polyfilled);
+}</code></pre>
+      </div>
+      <div class="secondary">
+        <fieldset class="controls">
+          <legend class="h2">Select a stylesheet below!</legend>
+          <p>
+            The polyfilled CSS was transformed by the PostCSS plugin, and the
+            unpolyfilled CSS is unchanged.
+          </p>
+
+          <div>
+            <input
+              type="radio"
+              id="plain"
+              name="stylesheet"
+              value="plain"
+              checked
+            />
+            <label for="plain">Unpolyfilled</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="polyfilled"
+              name="stylesheet"
+              value="polyfilled"
+            />
+            <label for="polyfilled">Polyfilled</label>
+          </div>
+        </fieldset>
+        <h2>Sample Content for Layers and the Polyfill</h2>
+        <p>
+          When layers are supported or if the polyfill is in use, you will see
+          the default bootstrap button styles. In this demo, the Bootstrap CSS
+          is imported into the lowest priority layer making any CSS written
+          outside of the "framework" layer take priority. This means you can
+          apply your own styles without having to worry about increased
+          specificity.
+        </p>
+        <button type="button" class="btn btn-primary">Primary</button>
+        <button type="button" class="btn btn-secondary">Secondary</button>
+        <button type="button" class="btn btn-success">Success</button>
+      </div>
+    </main>
+
+    <script src="./dist/main.js"></script>
+    <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+    <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+  </body>
+</html>

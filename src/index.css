@@ -1,11 +1,144 @@
-@import url("https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css") layer(default);
+@layer framework, overrides;
 
-@layer default {
-  div {
-    color: purple;
+@import url('bootstrap.css') layer(framework);
+
+@layer overrides {
+  html {
+    --banner-bg: var(--brand-primary);
+    --bg: hsl(300deg 10% 20%);
+    --fg: white;
+    --h1-family: 'ltc-kennerley', sans-serif;
+    --h1-family-accent: 'gastromond', sans-serif;
+    --h1-size: 2.5rem;
+    --h1-size-accent: calc(4rem + 1vw);
+    --link: var(--brand-secondary);
+    --type: 'ltc-kennerley', sans-serif;
+  }
+
+  h1 {
+    display: grid;
+    font-weight: 700;
+  }
+
+  h1 span {
+    font-size: var(--h1-size-accent);
+    font-weight: normal;
+  }
+
+  a {
+    color: var(--link);
   }
 }
 
-div {
-  color: green;
+/* Unlayered Styles have priority */
+
+html {
+  --brand-primary: hsl(195deg 52% 31%);
+  --brand-secondary: hsl(24deg 100% 62%);
+  --brand-highlight: hsl(330deg 100% 45%);
+  --gutter: 1rem;
+  --double-gutter: calc(var(--gutter) * 2);
+  --spacer: calc(var(--gutter) * 4);
+  --inline-padding: calc(1rem + 2vw);
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  display: grid;
+  grid-template:
+    'messages' auto
+    'header' auto
+    'main' 1fr / 100%;
+  font-family: var(--type);
+  font-size: calc(1em + 0.25vw);
+  line-height: 1.5;
+  margin: 0;
+}
+
+body > * {
+  padding: var(--block-padding, var(--gutter))
+    var(--inline-padding, var(--gutter));
+}
+
+.status {
+  background-color: var(--banner-bg);
+  color: var(--fg);
+  grid-area: messages;
+  text-align: center;
+  display: block;
+}
+
+.layers-false .status:before {
+  content: 'This browser does not support layers. May we suggest trying the polyfilled version?';
+}
+
+.layers-false.polyfilled .status:before {
+  content: 'This browser does not support layers, but the polyfill is applied.';
+}
+
+.layers-true .status:before {
+  content: 'This browser supports layers natively.';
+}
+
+header {
+  grid-area: header;
+}
+
+h1 {
+  font-family: var(--h1-family);
+  font-feature-settings: 'swsh';
+  font-size: var(--h1-size);
+  text-align: center;
+}
+
+h1 span {
+  font-family: var(--h1-family-accent, var(--h1-family));
+}
+
+h1,
+h2,
+legend {
+  line-height: 1.2;
+  margin-block-end: 0;
+}
+
+h2,
+.h2 {
+  margin-top: var(--double-gutter);
+}
+
+blockquote {
+  font-style: italic;
+}
+
+legend,
+figcaption {
+  font-weight: bold;
+}
+
+figcaption a {
+  font-weight: normal;
+}
+
+fieldset {
+  margin-bottom: var(--spacer);
+}
+
+main {
+  display: grid;
+  gap: calc(var(--gutter) + 2vw);
+  grid-area: main;
+  justify-content: center;
+  padding-bottom: var(--spacer);
+}
+
+@media (min-width: 64rem) {
+  main {
+    grid-template-columns: 1fr minmax(auto, 30%);
+  }
+}
+
+.primary {
+  display: grid;
 }

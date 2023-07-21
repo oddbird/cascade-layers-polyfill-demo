@@ -138,3 +138,7 @@ main {
     grid-template-columns: 1fr minmax(auto, 30%);
   }
 }
+
+.primary {
+  display: grid;
+}
